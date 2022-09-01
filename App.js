@@ -1,8 +1,8 @@
+import Realm from "realm";
+import AppLoading from "expo-app-loading";
 import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
 import Navigator from "./navigator";
-import Realm from "realm";
-import AppLoading from "expo-app-loading";
 
 const FeelingSchema = {
   name: "Feeling",
