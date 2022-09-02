@@ -20,7 +20,7 @@ const Btn = styled.TouchableOpacity`
   right: 50px;
   height: 80px;
   width: 80px;
-  border-radius: 50%;
+  border-radius: 50;
   justify-content: center;
   align-items: center;
   background-color: ${colors.btnColor};
