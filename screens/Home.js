@@ -3,7 +3,15 @@ import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../colors";
 import { useDB } from "../context";
-import { FlatList, TouchableOpacity } from "react-native";
+import {
+  FlatList,
+  TouchableOpacity,
+  LayoutAnimation,
+  Platform,
+  StyleSheet,
+  Text,
+  UIManager,
+} from "react-native";
 
 const View = styled.View`
   flex: 1;
@@ -49,13 +57,19 @@ const Message = styled.Text`
 const Separator = styled.View`
   height: 10px;
 `;
-
+if (
+  Platform.OS === "android" &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
 const Home = ({ navigation: { navigate } }) => {
   const realm = useDB();
   const [feelings, setFeelings] = useState([]);
   useEffect(() => {
     const feelings = realm.objects("Feeling");
     feelings.addListener((feelings, changes) => {
+      LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
       setFeelings(feelings.sorted("_id", true));
     });
     return () => {
