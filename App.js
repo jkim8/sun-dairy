@@ -19,8 +19,8 @@ export default function App() {
   const [ready, setReady] = useState(false);
   const [realm, setRealm] = useState(null);
   const startLoading = async () => {
-    const realm = await Realm.open({
-      path: "sunDiaryDB",
+    const connection = await Realm.open({
+      path: "SunDiaryDB",
       schema: [FeelingSchema],
     });
     setRealm(connection);
