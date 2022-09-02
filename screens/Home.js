@@ -1,7 +1,8 @@
-import react from "react";
+import react, { useEffect } from "react";
 import styled from "styled-components/native";
 import colors from "../colors";
 import { Ionicons } from "@expo/vector-icons";
+import { useDB } from "../context";
 
 const View = styled.View`
   flex: 1;
@@ -28,13 +29,22 @@ const Btn = styled.TouchableOpacity`
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 `;
 
-const Home = ({ navigation: { navigate } }) => (
-  <View>
-    <Title>Sun Diary</Title>
-    <Btn onPress={() => navigate("Write")}>
-      <Ionicons name="add" color="white" size={40} />
-    </Btn>
-  </View>
-);
+const Home = ({ navigation: { navigate } }) => {
+  const realm = useDB(
+    useEffect(() => {
+      const feelings = realm.objects("Feeling");
+      console.log(feelings);
+    }, [])
+  );
+
+  return (
+    <View>
+      <Title>Sun Diary</Title>
+      <Btn onPress={() => navigate("Write")}>
+        <Ionicons name="add" color="white" size={40} />
+      </Btn>
+    </View>
+  );
+};
 
 export default Home;
