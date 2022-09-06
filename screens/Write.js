@@ -53,7 +53,7 @@ const Emotion = styled.TouchableOpacity`
     props.selected ? "rgba(41, 30, 95, 1);" : "transparent"};
 `;
 const EmotionText = styled.Text`
-  font-size: 24px;
+  font-size: 15px;
 `;
 
 const emotions = ["🤯", "🥲", "🤬", "🤗", "🥰", "😊", "🤩"];
